@@ -1,0 +1,22 @@
+# 에이전트가 필요로 하는 도구 선언
+# 런타임이 Gateway의 runtime-mapping.yaml을 참조하여 실제 도구에 매핑
+tools:
+  - name: web_search
+    description: "웹에서 정보 검색"
+    input: { 검색쿼리 }
+    output: { 검색결과목록 }
+
+  - name: web_fetch
+    description: "웹 페이지 내용 가져오기"
+    input: { URL }
+    output: { 페이지내용 }
+
+  - name: file_write
+    description: "파일 생성 및 내용 작성"
+    input: { 파일경로, 내용 }
+    output: { 작성완료여부 }
+
+  - name: file_read
+    description: "파일 내용 읽기"
+    input: { 파일경로 }
+    output: { 파일내용 }

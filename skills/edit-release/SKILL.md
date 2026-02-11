@@ -1,0 +1,128 @@
+---
+name: edit-release
+description: Release 문서 수정
+user-invocable: true
+---
+
+# Edit Release
+
+[EDIT-RELEASE 활성화]
+
+## 목표
+
+특정 버전의 GitHub Release 문서를 사용자가 요청한 내용으로 수정하고
+`gh release edit`로 변경사항을 반영함.
+
+## 활성화 조건
+
+"Release 수정", "릴리즈 수정" 키워드 감지 시 또는 `/github-release-manager:edit-release` 호출 시.
+
+## 에이전트 호출 규칙
+
+### 에이전트 FQN
+
+| 에이전트 | FQN |
+|----------|-----|
+| executor | `github-release-manager:executor:executor` |
+
+### 프롬프트 조립
+
+1. `agents/{agent-name}/` 에서 3파일 로드 (AGENT.md + agentcard.yaml + tools.yaml)
+2. `gateway/runtime-mapping.yaml` 참조하여 구체화:
+   - **모델 구체화**: agentcard.yaml의 `tier` → `tier_mapping`에서 모델 결정
+   - **툴 구체화**: tools.yaml의 추상 도구 → `tool_mapping`에서 실제 도구 결정
+   - **금지액션 구체화**: agentcard.yaml의 `forbidden_actions` → `action_mapping`에서 제외할 실제 도구 결정
+   - **최종 도구** = (구체화된 도구) - (제외 도구)
+3. 프롬프트 조립: AGENT.md + agentcard.yaml + tools.yaml을 합쳐 하나의 프롬프트로 구성
+   - **구성 순서**: 공통 정적(runtime-mapping) → 에이전트별 정적(3파일) → 동적(작업 지시)
+4. `Task(subagent_type=FQN, model=구체화된 모델, prompt=조립된 프롬프트)` 호출
+
+## 워크플로우
+
+### Phase 1: 정보 수집 (ulw 활용)
+
+AskUserQuestion으로 사용자에게 수정할 Release 버전과 수정 사항을 문의함.
+- 수정할 Release 버전 (예: v1.0.0)
+- 수정할 내용 (예: 노트 내용 변경, 제목 변경 등)
+
+### Phase 2: Release 수정 → Agent: executor (`/oh-my-claudecode:ralph` 활용)
+
+- **TASK**: 사용자가 요청한 수정 사항을 gh release edit 명령으로 Release 문서에 반영
+- **EXPECTED OUTCOME**: Release 문서가 수정되고 수정 사항이 반영됨
+- **MUST DO**: `gh release edit {버전} --notes "{수정된 내용}"` 형식으로 실행
+- **MUST NOT DO**: 사용자가 요청하지 않은 내용 수정 금지, Release 삭제 금지
+- **CONTEXT**: Phase 1에서 수집한 버전과 수정 사항
+
+### Phase 3: 검증 (`ulw` 활용)
+
+`gh release view {버전}`으로 수정 사항이 반영되었는지 확인 후 사용자에게 보고함.
+
+## 완료 조건
+
+- [ ] 사용자가 수정할 버전과 수정 사항을 명확히 지정함
+- [ ] `gh release edit` 명령으로 Release 수정 완료
+- [ ] `gh release view {버전}` 명령으로 수정 사항 반영 확인됨
+- [ ] 수정 결과가 사용자에게 보고됨
+
+## 검증 프로토콜
+
+완료 선언 전 반드시 `gh release view {버전}` 명령을 실행하여 수정 사항 반영을 확인함.
+검증 없이 완료 선언 불가 (Iron Law).
+
+검증 항목:
+
+| 항목 | 검증 방법 | 성공 기준 |
+|------|----------|----------|
+| Release 수정 | `gh release view {버전}` | 명령 성공 + 수정 사항 반영 확인 |
+| 버전 일치 | 출력된 Release 태그 확인 | 사용자 지정 버전과 일치 |
+| 수정 내용 | Release body 확인 | 요청된 수정 사항이 반영됨 |
+
+## 상태 정리
+
+완료 시 임시 파일 삭제 (수정 내용 임시 파일이 사용된 경우).
+상태 파일 미사용.
+
+## 취소
+
+사용자가 "cancelomc" 또는 "stopomc" 요청 시 즉시 중단.
+진행 중인 Phase에서 중단하며, GitHub Release는 수정되지 않은 상태로 유지됨.
+
+## 재개
+
+마지막 완료된 Phase부터 재시작 가능.
+Phase 2 실패 시 동일한 버전과 수정 사항으로 재시도.
+
+## MUST 규칙
+
+| # | 규칙 |
+|---|------|
+| 1 | 사용자에게 수정할 버전과 수정 사항을 반드시 문의 |
+| 2 | `gh release edit` 명령으로 Release 수정 |
+| 3 | 수정 완료 후 `gh release view`로 검증 수행 |
+| 4 | 모든 워크플로우 단계에서 오케스트레이션 스킬 활용 필수 (매핑 없으면 `ulw` 폴백) |
+
+## MUST NOT 규칙
+
+| # | 금지 사항 |
+|---|----------|
+| 1 | 사용자가 요청하지 않은 내용 수정 금지 |
+| 2 | Release 삭제 금지 |
+| 3 | 검증 없이 완료 선언 금지 |
+| 4 | 에이전트 위임 시 HOW(방법)를 상세히 기술 금지 (WHAT+제약만 명시) |
+
+## 검증 체크리스트
+
+- [ ] Frontmatter에 name, description 포함
+- [ ] H1 타이틀 존재
+- [ ] 목표 섹션 존재
+- [ ] 에이전트 호출 규칙 섹션에 FQN 테이블 포함
+- [ ] 프롬프트 조립 절차가 4단계로 기술됨
+- [ ] `→ Agent:` 마커가 있는 워크플로우 단계에 5항목이 포함되는가
+- [ ] `→ Skill:` 마커가 있는 워크플로우 단계에 3항목이 포함되는가
+- [ ] 모든 워크플로우 단계에 오케스트레이션 스킬 활용이 명시되었는가
+- [ ] 매핑 스킬이 없는 단계에 `ulw` 폴백이 적용되었는가
+- [ ] 완료 조건, 검증 프로토콜, 상태 정리, 취소/재개 섹션 포함
+- [ ] 프롬프트 구성 순서가 공통 정적 → 에이전트별 정적 → 동적 순서인가
+- [ ] `## MUST 규칙` 섹션이 파일 마지막 3개 섹션 중 첫 번째에 위치하는가
+- [ ] `## MUST NOT 규칙` 섹션이 `## MUST 규칙` 바로 다음에 위치하는가
+- [ ] `## 검증 체크리스트` 섹션이 파일의 최종 섹션인가

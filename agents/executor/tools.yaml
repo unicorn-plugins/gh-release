@@ -1,0 +1,17 @@
+# 에이전트가 필요로 하는 도구 선언
+# 런타임이 Gateway의 runtime-mapping.yaml을 참조하여 실제 도구에 매핑
+tools:
+  - name: code_execute
+    description: "셸 명령 실행 (gh CLI 등)"
+    input: { 명령어 }
+    output: { 실행결과 }
+
+  - name: file_read
+    description: "파일 내용 읽기"
+    input: { 파일경로 }
+    output: { 파일내용 }
+
+  - name: file_write
+    description: "파일 생성 및 내용 작성"
+    input: { 파일경로, 내용 }
+    output: { 작성완료여부 }
