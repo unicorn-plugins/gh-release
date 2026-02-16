@@ -1,6 +1,7 @@
 ---
 name: core
 description: GitHub Release Manager 시스템 행동 규범 및 의도 라우팅
+type: core
 ---
 
 # Core

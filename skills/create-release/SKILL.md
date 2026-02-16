@@ -2,6 +2,7 @@
 name: create-release
 description: Release 문서 생성
 user-invocable: true
+type: orchestrator
 ---
 
 # Create Release

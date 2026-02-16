@@ -2,6 +2,7 @@
 name: help
 description: 사용 안내
 user-invocable: true
+type: utility
 ---
 
 # Help

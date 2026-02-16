@@ -2,6 +2,7 @@
 name: edit-release
 description: Release 문서 수정
 user-invocable: true
+type: orchestrator
 ---
 
 # Edit Release

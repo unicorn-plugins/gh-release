@@ -2,6 +2,7 @@
 name: setup
 description: 플러그인 초기 설정
 user-invocable: true
+type: setup
 ---
 
 # Setup

@@ -2,6 +2,7 @@
 name: delete-release
 description: Release 문서 삭제
 user-invocable: true
+type: orchestrator
 ---
 
 # Delete Release

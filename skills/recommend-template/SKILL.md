@@ -2,6 +2,7 @@
 name: recommend-template
 description: Release 문서 구성 추천
 user-invocable: true
+type: orchestrator
 ---
 
 # Recommend Template
