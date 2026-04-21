@@ -38,8 +38,6 @@ GitHub Release Manager 플러그인의 사용 가능한 명령, 자동 라우팅
 | `/github-release-manager:create-release` | Release 문서 생성 |
 | `/github-release-manager:edit-release` | Release 문서 수정 |
 | `/github-release-manager:delete-release` | Release 문서 삭제 |
-| `/github-release-manager:add-ext-skill` | 외부호출 스킬(ext-{대상플러그인}) 추가 |
-| `/github-release-manager:remove-ext-skill` | 외부호출 스킬(ext-{대상플러그인}) 제거 |
 | `/github-release-manager:help` | 사용 안내 |
 
 ### 자동 라우팅
