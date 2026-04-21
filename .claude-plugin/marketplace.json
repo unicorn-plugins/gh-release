@@ -1,12 +1,12 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "github-release-manager",
+  "name": "gh-release",
   "owner": {
     "name": "Unicorn Inc."
   },
   "plugins": [
     {
-      "name": "github-release-manager",
+      "name": "gh-release",
       "source": "./",
       "category": "development"
     }

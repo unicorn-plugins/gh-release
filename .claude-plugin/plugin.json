@@ -1,6 +1,6 @@
 {
-  "name": "github-release-manager",
-  "version": "1.0.1",
+  "name": "gh-release",
+  "version": "1.0.3",
   "description": "GitHub Release 관리 플러그인 (생성/수정/삭제/구성 추천)",
   "author": {
     "name": "Unicorn Inc."
