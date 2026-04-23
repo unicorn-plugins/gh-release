@@ -17,13 +17,13 @@ GitHub Release Manager 플러그인의 사용 가능한 명령, 자동 라우팅
 
 ## 활성화 조건
 
-사용자가 `/github-release-manager:help` 호출 시 또는 "도움말", "help", "뭘 할 수 있어", "사용법" 키워드 감지 시.
+사용자가 `/gh-release:help` 호출 시 또는 "도움말", "help", "뭘 할 수 있어", "사용법" 키워드 감지 시.
 
 ## 명령어
 
 | 명령 | 설명 |
 |------|------|
-| `/github-release-manager:help` | 이 도움말 표시 |
+| `/gh-release:help` | 이 도움말 표시 |
 
 ## 워크플로우
 
@@ -33,12 +33,12 @@ GitHub Release Manager 플러그인의 사용 가능한 명령, 자동 라우팅
 
 | 명령 | 설명 |
 |------|------|
-| `/github-release-manager:setup` | 플러그인 초기 설정 |
-| `/github-release-manager:recommend-template` | Release 문서 구성 추천 |
-| `/github-release-manager:create-release` | Release 문서 생성 |
-| `/github-release-manager:edit-release` | Release 문서 수정 |
-| `/github-release-manager:delete-release` | Release 문서 삭제 |
-| `/github-release-manager:help` | 사용 안내 |
+| `/gh-release:setup` | 플러그인 초기 설정 |
+| `/gh-release:recommend-template` | Release 문서 구성 추천 |
+| `/gh-release:create-release` | Release 문서 생성 |
+| `/gh-release:edit-release` | Release 문서 수정 |
+| `/gh-release:delete-release` | Release 문서 삭제 |
+| `/gh-release:help` | 사용 안내 |
 
 ### 자동 라우팅
 
@@ -52,9 +52,9 @@ GitHub Release Manager 플러그인의 사용 가능한 명령, 자동 라우팅
 
 ### 시작하기
 
-1. `/github-release-manager:setup`으로 초기 설정 수행
-2. `/github-release-manager:recommend-template`로 Release 문서 구성 추천 받기
-3. `/github-release-manager:create-release`로 Release 생성
+1. `/gh-release:setup`으로 초기 설정 수행
+2. `/gh-release:recommend-template`로 Release 문서 구성 추천 받기
+3. `/gh-release:create-release`로 Release 생성
 
 ## MUST 규칙
 

@@ -1,25 +1,25 @@
-# github-release-manager 플러그인
+# gh-release 플러그인
 
 ## 사용 가능한 명령
 
 | 명령 | 설명 |
 |------|------|
-| `/github-release-manager:setup` | 플러그인 초기 설정 |
-| `/github-release-manager:recommend-template` | Release 문서 구성 추천 |
-| `/github-release-manager:create-release` | Release 문서 생성 |
-| `/github-release-manager:edit-release` | Release 문서 수정 |
-| `/github-release-manager:delete-release` | Release 문서 삭제 |
-| `/github-release-manager:help` | 사용 안내 |
+| `/gh-release:setup` | 플러그인 초기 설정 |
+| `/gh-release:recommend-template` | Release 문서 구성 추천 |
+| `/gh-release:create-release` | Release 문서 생성 |
+| `/gh-release:edit-release` | Release 문서 수정 |
+| `/gh-release:delete-release` | Release 문서 삭제 |
+| `/gh-release:help` | 사용 안내 |
 
 ## 자동 라우팅
 
-다음과 같은 요청은 자동으로 github-release-manager 플러그인이 처리합니다:
-- "Release 구성 추천", "템플릿 추천" → /github-release-manager:recommend-template
-- "Release 생성", "릴리즈 만들어" → /github-release-manager:create-release
-- "Release 수정", "릴리즈 수정" → /github-release-manager:edit-release
-- "Release 삭제", "릴리즈 삭제" → /github-release-manager:delete-release
-- "설정", "setup" → /github-release-manager:setup
-- "도움말", "help" → /github-release-manager:help
+다음과 같은 요청은 자동으로 gh-release 플러그인이 처리합니다:
+- "Release 구성 추천", "템플릿 추천" → /gh-release:recommend-template
+- "Release 생성", "릴리즈 만들어" → /gh-release:create-release
+- "Release 수정", "릴리즈 수정" → /gh-release:edit-release
+- "Release 삭제", "릴리즈 삭제" → /gh-release:delete-release
+- "설정", "setup" → /gh-release:setup
+- "도움말", "help" → /gh-release:help
 
 ## 운영 규칙
 

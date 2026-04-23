@@ -16,7 +16,7 @@ type: orchestrator
 
 ## 활성화 조건
 
-"Release 삭제", "릴리즈 삭제" 키워드 감지 시 또는 `/github-release-manager:delete-release` 호출 시.
+"Release 삭제", "릴리즈 삭제" 키워드 감지 시 또는 `/gh-release:delete-release` 호출 시.
 
 ## 에이전트 호출 규칙
 
@@ -24,7 +24,7 @@ type: orchestrator
 
 | 에이전트 | FQN |
 |----------|-----|
-| executor | `github-release-manager:executor:executor` |
+| executor | `gh-release:executor:executor` |
 
 ### 프롬프트 조립
 

@@ -18,7 +18,7 @@ type: orchestrator
 
 ## 활성화 조건
 
-"Release 구성 추천", "템플릿 추천" 키워드 감지 시 또는 `/github-release-manager:recommend-template` 호출 시.
+"Release 구성 추천", "템플릿 추천" 키워드 감지 시 또는 `/gh-release:recommend-template` 호출 시.
 
 ---
 
@@ -28,8 +28,8 @@ type: orchestrator
 
 | 에이전트 | FQN |
 |----------|-----|
-| researcher | `github-release-manager:researcher:researcher` |
-| executor | `github-release-manager:executor:executor` |
+| researcher | `gh-release:researcher:researcher` |
+| executor | `gh-release:executor:executor` |
 
 ### 프롬프트 조립 절차
 

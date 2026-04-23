@@ -16,7 +16,7 @@ type: orchestrator
 
 ## 활성화 조건
 
-"Release 수정", "릴리즈 수정" 키워드 감지 시 또는 `/github-release-manager:edit-release` 호출 시.
+"Release 수정", "릴리즈 수정" 키워드 감지 시 또는 `/gh-release:edit-release` 호출 시.
 
 ## 에이전트 호출 규칙
 
@@ -24,7 +24,7 @@ type: orchestrator
 
 | 에이전트 | FQN |
 |----------|-----|
-| executor | `github-release-manager:executor:executor` |
+| executor | `gh-release:executor:executor` |
 
 ### 프롬프트 조립
 

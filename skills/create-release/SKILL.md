@@ -16,7 +16,7 @@ type: orchestrator
 
 ## 활성화 조건
 
-"Release 생성", "릴리즈 만들어" 키워드 감지 시 또는 `/github-release-manager:create-release` 호출 시.
+"Release 생성", "릴리즈 만들어" 키워드 감지 시 또는 `/gh-release:create-release` 호출 시.
 
 ## 에이전트 호출 규칙
 
@@ -24,8 +24,8 @@ type: orchestrator
 
 | 에이전트 | FQN |
 |----------|-----|
-| explorer | `github-release-manager:explorer:explorer` |
-| executor | `github-release-manager:executor:executor` |
+| explorer | `gh-release:explorer:explorer` |
+| executor | `gh-release:executor:executor` |
 
 ### 프롬프트 조립
 
